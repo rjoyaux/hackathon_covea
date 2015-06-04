@@ -11,7 +11,8 @@ class Avis {
 	
 	String description
 	
-	Vehicule vehicule
+	static hasOne = [vehicule : Vehicule]
+	
 	
     static constraints = {
 		noteConsommation(nullable: false, blank:false)

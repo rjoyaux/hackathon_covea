@@ -11,6 +11,5 @@ class SyntheseVehicule {
 	def noteRapportQualitePrix = 0
 	def noteConfort = 0
 	def noteCoutEntretien = 0
-	def nbVehicules = 0
 	def nbAvis = 0
 }

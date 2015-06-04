@@ -1,5 +1,6 @@
 import car.advisor.Vehicule
 import car.advisor.Utilisateur
+import car.advisor.Avis
 
 class BootStrap {
 
@@ -19,7 +20,7 @@ class BootStrap {
 			   declinaison:row[5],
 			   urlImage:row[32]
 			   ) 
-			vehicule.save(failOnError: true, flush: true)
+			vehicule.save(failOnError: true, flush: false)
 		}
 		
 		log.error('chargement des utilisateurs')
@@ -36,8 +37,33 @@ class BootStrap {
 				dateDebutEffet : row[7]
 				// date d'assurance
 			)
-			utilisateur.save(failOnError: true, flush: true)
+			utilisateur.save(failOnError: true, flush: false)
 		}
+		
+		log.error('chargement des avis')
+		def avis = new Avis (
+			noteConsommation : 1,
+			noteQualiteFinition : 2,
+			noteSecurite : 3,
+			noteRapportQualitePrix : 4,
+			noteConfort : 5,
+			noteCoutEntretien : 5,
+			description : 'Je suis hypra content de ma caisse',
+			vehicule : Vehicule.findByIdentifiant(70122)
+		)
+		avis.save(failOnError: true, flush: false)
+		
+		avis = new Avis (
+			noteConsommation : 1,
+			noteQualiteFinition : 2,
+			noteSecurite : 3,
+			noteRapportQualitePrix : 4,
+			noteConfort : 5,
+			noteCoutEntretien : 5,
+			description : 'Super super',
+			vehicule : Vehicule.findByIdentifiant(70122)
+		)
+		avis.save(failOnError: true, flush: false)
 		
     }
     def destroy = {

@@ -10,8 +10,6 @@ class Vehicule {
 	String declinaison
 	String urlImage
 	
-	Utilisateur utilisateur
-
 	static hasMany = [avis: Avis]
 	
     static constraints = {

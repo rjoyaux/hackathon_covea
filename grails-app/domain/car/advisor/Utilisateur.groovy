@@ -11,15 +11,14 @@ class Utilisateur {
 	int age
 	int nbEnfants
 	
-	Date dateDebutEffet
+	String dateDebutEffet
 	
-	static hasOne = [vehicule: Vehicule]
 	
     static constraints = {
 		nom(nullable: false,blank:false)
 		prenom(nullable: false,blank:false)
 		ville(nullable: false,blank:false)
-		urlAvatar(nullable: false,blank:false)
+		urlAvatar(nullable: true,blank:true)
     }
 	
 	static mapping = {

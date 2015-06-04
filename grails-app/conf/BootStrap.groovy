@@ -32,8 +32,8 @@ class BootStrap {
 				ville : row[2],
 				age : row[3].toInteger(),
 				nbEnfants : row[4].toInteger(),
-				refPers : row[5]
-				// identifiant vehicule
+				refPers : row[5],
+				dateDebutEffet : row[7]
 				// date d'assurance
 			)
 			utilisateur.save(failOnError: true, flush: true)

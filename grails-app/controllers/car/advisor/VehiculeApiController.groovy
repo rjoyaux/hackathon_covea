@@ -1,7 +1,9 @@
 package car.advisor
 
 import grails.converters.JSON
+
 import javax.servlet.http.HttpServletResponse
+
 import car.advisor.result.SyntheseVehicule
 
 class VehiculeApiController {
@@ -11,9 +13,35 @@ class VehiculeApiController {
 		
 	}
 	
+	def search() {
+		if(!params.q)
+		{
+			response.sendError(HttpServletResponse.SC_BAD_REQUEST)
+			return
+		}
+		
+		def recherche =  "%" + params.q.toUpperCase()+ "%"
+		
+			log.error(recherche)
+			
+		def res = Vehicule.withCriteria {
+			ilike('marque', recherche) or {
+				ilike('modele', recherche)
+			}
+			
+					
+		}
+
+
+		
+		
+		render res as JSON
+			
+			
+		
+	}
 	
 	def vehicule() {
-		log.error(params)
 		if(!params.identifiant)
 		{
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST)

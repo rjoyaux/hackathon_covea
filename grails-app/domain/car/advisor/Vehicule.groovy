@@ -9,7 +9,11 @@ class Vehicule {
 	String carrosserie
 	String declinaison
 	String urlImage
+	
+	Utilisateur utilisateur
 
+	static hasMany = [avis: Avis]
+	
     static constraints = {
 		 identifiant(nullable: false,blank:false)
 		 marque(nullable: false,blank:false)
@@ -19,4 +23,8 @@ class Vehicule {
 		 declinaison(nullable: false,blank:false)
 		 urlImage(nullable: true,blank:true)
     }
+	
+	static mapping = {
+		table 'vehicule'
+	}
 }

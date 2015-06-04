@@ -49,7 +49,8 @@ class BootStrap {
 			noteConfort : 5,
 			noteCoutEntretien : 5,
 			description : 'Je suis hypra content de ma caisse',
-			vehicule : Vehicule.findByIdentifiant(70122)
+			vehicule : Vehicule.findByIdentifiant(70122),
+			utilisateur : Utilisateur.findByRefPers(98005343)
 		)
 		avis.save(failOnError: true, flush: false)
 		
@@ -61,7 +62,9 @@ class BootStrap {
 			noteConfort : 5,
 			noteCoutEntretien : 5,
 			description : 'Super super',
-			vehicule : Vehicule.findByIdentifiant(70122)
+			vehicule : Vehicule.findByIdentifiant(70122),
+			utilisateur : Utilisateur.findByRefPers(98005344)
+			
 		)
 		avis.save(failOnError: true, flush: false)
 		

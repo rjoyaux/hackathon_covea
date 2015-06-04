@@ -11,7 +11,11 @@ class Avis {
 	
 	String description
 	
-	static hasOne = [vehicule : Vehicule]
+	static hasOne = [
+		vehicule : Vehicule,
+		utilisateur : Utilisateur
+		]
+	
 	
 	
     static constraints = {

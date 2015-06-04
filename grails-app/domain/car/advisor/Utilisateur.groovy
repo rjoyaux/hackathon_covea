@@ -13,6 +13,8 @@ class Utilisateur {
 	
 	String dateDebutEffet
 	
+	static hasMany = [avis: Avis]
+	
 	
     static constraints = {
 		nom(nullable: false,blank:false)

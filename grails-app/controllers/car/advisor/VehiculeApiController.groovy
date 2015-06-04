@@ -17,6 +17,7 @@ class VehiculeApiController {
 		if(!params.identifiant)
 		{
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST)
+			return
 		}
 		Integer paramValue = params.int('identifiant')
 		def vehicule = Vehicule.findByIdentifiant(paramValue)

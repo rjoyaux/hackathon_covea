@@ -52,7 +52,7 @@ class VehiculeApiController {
 		
 		
 		if (vehicule){
-			// les avis liés au véhicule
+			// les avis liï¿½s au vï¿½hicule
 			def noteConsommation = 0
 			def noteQualiteFinition = 0
 			def noteSecurite = 0
@@ -108,7 +108,7 @@ class VehiculeApiController {
 			
 			render result as JSON
 		} else {
-			log.error('Vehicule non trouve')
+			log.error("Vehicule non trouve : ${paramValue}")
 			response.sendError(HttpServletResponse.SC_NOT_FOUND) 
 		}
 		

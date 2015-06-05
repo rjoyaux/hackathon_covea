@@ -22,6 +22,7 @@ class AvisApiController {
 		
 		if(!vehicule || !utilisateur)
 		{
+			log.error("Post avis, vehicule ou avis non trouve : vehicule : ${vehicule}, utilisateur : ${utilisateur}")
 			response.sendError(HttpServletResponse.SC_NOT_FOUND)
 			return
 		}

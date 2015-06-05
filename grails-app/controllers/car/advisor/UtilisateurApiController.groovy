@@ -16,10 +16,11 @@ class UtilisateurApiController {
 		}
 		def utilisateur = Utilisateur.findByRefPers(params.identifiant)
 		if (utilisateur){
+			log.error(utilisateur)
 			render utilisateur as JSON
 			return
 		} else {
-			log.error("Utilisateur non trouve : ${paramValue}")
+			log.error("Utilisateur non trouve : ${params.identifiant}")
 			response.sendError(HttpServletResponse.SC_NOT_FOUND)
 			return
 		}

@@ -41,7 +41,6 @@ class AvisApiController {
 			
 		)
 		avis.save(failOnError: true, flush: true)
-		
 		response.sendError(HttpServletResponse.SC_CREATED)
 		return
 	}
@@ -66,7 +65,6 @@ class AvisApiController {
 					) 
 				restultat << syntheseAvis
 			}
-			
 			render restultat as JSON
 		} else {
 			log.error('Vehicule non trouve')

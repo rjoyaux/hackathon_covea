@@ -105,7 +105,7 @@ class VehiculeApiController {
 				nbAvis:nbAvis,
 				noteGlobale : noteGlobale			
 			)
-			
+			log.error(result)
 			render result as JSON
 		} else {
 			log.error("Vehicule non trouve : ${paramValue}")

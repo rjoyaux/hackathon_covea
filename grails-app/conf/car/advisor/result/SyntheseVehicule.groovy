@@ -12,4 +12,5 @@ class SyntheseVehicule {
 	def noteConfort = 0
 	def noteCoutEntretien = 0
 	def nbAvis = 0
+	def noteGlobale = 0
 }

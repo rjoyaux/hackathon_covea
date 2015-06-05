@@ -34,39 +34,30 @@ class BootStrap {
 				age : row[3].toInteger(),
 				nbEnfants : row[4].toInteger(),
 				refPers : row[5],
-				dateDebutEffet : row[7]
-				// date d'assurance
+				dateDebutEffet : row[7],
+				urlAvatar : row[8]
 			)
 			utilisateur.save(failOnError: true, flush: false)
 		}
 		
 		log.error('chargement des avis')
-		def avis = new Avis (
-			noteConsommation : 1,
-			noteQualiteFinition : 2,
-			noteSecurite : 3,
-			noteRapportQualitePrix : 4,
-			noteConfort : 5,
-			noteCoutEntretien : 5,
-			description : 'Je suis hypra content de ma caisse',
-			vehicule : Vehicule.findByIdentifiant(70122),
-			utilisateur : Utilisateur.findByRefPers(98005343)
-		)
-		avis.save(failOnError: true, flush: false)
+		csv = new File("grails-app/conf/avis.csv")
+		def avis
+		csv.splitEachLine(';') { row ->
+			avis = new Avis (
+			   noteConsommation : row[0],
+			   noteQualiteFinition: row[1],
+			   noteSecurite:row[2],
+			   noteRapportQualitePrix:row[3],
+			   noteConfort:row[4],
+			   noteCoutEntretien:row[5],
+			   description:row[6],
+			   vehicule : Vehicule.findByIdentifiant(row[7]),
+			   utilisateur : Utilisateur.findByRefPers(row[8])
+			   )
+			avis.save(failOnError: true, flush: false)
+		}
 		
-		avis = new Avis (
-			noteConsommation : 1,
-			noteQualiteFinition : 2,
-			noteSecurite : 3,
-			noteRapportQualitePrix : 4,
-			noteConfort : 5,
-			noteCoutEntretien : 5,
-			description : 'Super super',
-			vehicule : Vehicule.findByIdentifiant(70122),
-			utilisateur : Utilisateur.findByRefPers(98005344)
-			
-		)
-		avis.save(failOnError: true, flush: false)
 		
     }
     def destroy = {

@@ -20,20 +20,19 @@ class VehiculeApiController {
 			return
 		}
 		
-		def recherche =  "%" + params.q.toUpperCase()+ "%"
+		def recherche =  "%" + params.q + "%"
 		
-			log.error(recherche)
-			
-		def res = Vehicule.withCriteria {
-			ilike('marque', recherche) or {
-				ilike('modele', recherche)
-			}
-			
-					
+		log.error(recherche)
+		
+		def query = Vehicule.where {
+			marque =~ recherche ||
+			modele =~ recherche ||
+			generation =~ recherche ||
+			carrosserie =~ recherche ||
+			declinaison =~ recherche			
 		}
-
-
 		
+		def res = query.list()
 		
 		render res as JSON
 			
@@ -60,6 +59,7 @@ class VehiculeApiController {
 			def noteRapportQualitePrix = 0
 			def noteConfort = 0
 			def noteCoutEntretien = 0
+			def noteGlobale = 0
 			
 			def moyenneConsommation = 0
 			def moyenneQualiteFinition = 0
@@ -88,6 +88,10 @@ class VehiculeApiController {
 				moyenneRapportQualitePrix = noteRapportQualitePrix/ nbAvis
 				moyenneConfort = noteConfort/ nbAvis
 				moyenneCoutEntretien = noteCoutEntretien/ nbAvis
+				
+				noteGlobale = (moyenneConsommation +
+					moyenneQualiteFinition + moyenneSecurite + moyenneRapportQualitePrix +
+					moyenneConfort + moyenneCoutEntretien) / 6
 			}
 			
 			def result = new SyntheseVehicule(
@@ -98,7 +102,8 @@ class VehiculeApiController {
 				noteRapportQualitePrix : moyenneRapportQualitePrix,
 				noteConfort : moyenneConfort,
 				noteCoutEntretien : moyenneCoutEntretien,
-				nbAvis:nbAvis
+				nbAvis:nbAvis,
+				noteGlobale : noteGlobale			
 			)
 			
 			render result as JSON
